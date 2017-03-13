@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="example">
+	<my-awesome-list :items="items">
+        <template slot="item" scope="props">
+            <li class="my-fancy-item">{{ props.text }}</li>
+        </template>
+    </my-awesome-list>
+</div>
+</body>
+<script type="text/javascript">
+	Vue.component('my-awesome-list',{
+        props:['items'],
+		template:'\
+        <ul>\
+            <slot name="item"\
+                v-for="item in items"\
+                :text="item.text">\
+            </slot>\
+        </ul>\
+    '
+	});
+
+	var example = new Vue({
+		el:'#example',
+        data:{
+             items:[
+                {text:'Vue'},
+                {text:'Angular'},
+                {text:'React'}
+             ]
+        },
+        methods:{
+            items:function(){
+                return this.items;
+            }
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="example">
+	 <child>
+        <template scope="props">
+            <span>hello from parents</span>
+            <br>
+            <span>{{ props.text }}</span>
+        </template>
+   </child>
+</div>
+</body>
+<script type="text/javascript">
+	Vue.component('child',{
+		template:'\
+        <div class="child">\
+          <slot text="hello from child"></slot>\
+        </div>\
+    '
+	});
+
+	var example = new Vue({
+		el:'#example'
+})
+</script>
+</html>

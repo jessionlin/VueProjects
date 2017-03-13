@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="example" v-bind:inner = "loginType">
+	<div v-if="loginType.text === 'username'">
+  		<label>Username</label>
+ 		 <input placeholder="Enter your username">
+	</div>
+	<div v-else>
+  		<label>Email</label>
+  		<input placeholder="Enter your email address">
+	</div>
+	<button style="width:50px;height: 20px;" v-on:click="change">change</button>
+</div>
+
+</body>
+<script type="text/javascript">
+
+	var vm = new Vue({
+		el:'#example',
+		props:['inner'],
+		data:{
+			loginType:{{inner.loginType === 'username' ? 'email':'username'}}
+		},
+		methods:{
+			change:function(){
+				this.loginType = 'username';
+				return 'username';
+			}
+		}
+	});
+
+
+</script>
+</html>

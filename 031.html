@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="example">
+	<tick> {{ message }}</tick>
+</div>
+</body>
+<script type="text/javascript">
+    Vue.component('tick',{
+        template:'<span \
+         v-bind:updateMessage="updateMessage"\
+         >{{ message }}</span>',
+        data: function(){
+            return {
+                message:'not updated'
+            }
+        },
+        methods:{
+            updateMessage:function(){
+                this.message = 'updated';
+                console.log(this.$el.textContent);
+                this.$nextTick(function(){
+                    console.log(this.$el.textContent)
+                })
+            }
+        }
+    })
+	var vm = new Vue({
+		el:'#example',
+        data:{
+             message:''
+        },
+        methods:{
+            updateMessage:[]
+        }
+    });
+
+</script>
+</html>

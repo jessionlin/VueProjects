@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+  <style type="text/css">
+    .preview{
+      display: inline-flex;
+      width: 50px;
+      height: 50px;
+    }
+  </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script> 
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/tween.js@16.3.4"></script>
+    <script src="https://unpkg.com/color-js@1.0.3/color.js"></script>
+</head>
+<body>
+<div id="demo">
+  <ul v-if="items.length">
+  	<li v-for="item in items">{{item.name}}</li>
+  </ul>
+  <p v-else>No items found.</p>
+</div>
+</body>
+<script type="text/javascript">
+	var demo = new Vue({
+		el:'#demo',
+		data:{
+			items:[
+				{name:'Jack'},
+				{name:'Jession'},
+				{name:'Lucy'},
+				{name:'Allien'}
+			]
+		},
+		render:function(createElement){
+			if(this.items.length){
+				return createElement('ul',this.items.map(function(item){
+					return createElement('li',item.name);
+				}))
+			}else{
+				return createElement('p','No items found.')
+			}
+		}
+	})
+	
+
+</script>
+</html>

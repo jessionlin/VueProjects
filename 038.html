@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script> 
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style type="text/css">
+        .fade-enter-active, .fade-leave-active{
+          transition: opacity .3s ease;
+        }
+        .fade-enter, .fade-leave-active{
+          opacity: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="demo">
+  <input type="radio" value="A" @click="change('A',this)" name="1" checked/>
+  <input type="radio" value="B" @click="change('B',this)" name="1"/>
+  <transition name="fade" mode="out-in">
+      <component v-bind:is="view"></component>
+  </transition>
+</div>
+</body>
+<script type="text/javascript">
+	var demo = new Vue({
+        el: '#demo',
+        data: {
+            view:'v-a'
+        },
+        components:{
+          'v-a':{
+            template:'<div>Component A</div>'
+          },
+          'v-b':{
+            template:'<div>Component B</div>'
+          }
+        },
+        methods:{
+          change:function(mes,event){
+            if(mes === 'A') mes = 'v-a';
+            else if(mes === 'B') mes='v-b';
+            this.$data.view = mes;
+
+          }
+        }
+    });
+
+</script>
+</html>
